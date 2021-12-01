@@ -8,13 +8,13 @@
 
  
         $sql = "SELECT * FROM message
-                 LEFT JOIN users ON users.unique_id = message.incoming_id
+                 LEFT JOIN users ON users.unique_id = message.outgoing_id
                  WHERE (outgoing_id = {$outgoing_id}  AND incoming_id = {$incoming_id})
-                 OR  (outgoing_id = {$incoming_id}  AND incoming_id = {$outgoing_id}) ORDER BY msg_id ASC";
+                 OR  (outgoing_id = {$incoming_id}  AND incoming_id = {$outgoing_id}) ORDER BY msg_id";
         $query = mysqli_query($conn, $sql);
         if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_assoc($query)){
-                if($row['outgoing_id'] === $outgoing_id){// if this is equal to then he is a sender
+                if($row['incoming_id'] === $incoming_id){// if this is equal to then he is a sender
                     
                     $output .= '<div class="chat incomimg">
                                     <div class="content">

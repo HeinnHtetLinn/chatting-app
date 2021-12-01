@@ -26,6 +26,15 @@ xhr.send(formData);  //sending the form data to php
 
 }    
 
+chatBox.onmouseenter = ()=>{
+    chatBox.classList.add("active");
+}
+
+chatBox.onmouseleave = ()=>{
+    chatBox.classList.remove("active");
+}
+
+
 setInterval(()=>{
     // let's start Ajax
     let xhr =new XMLHttpRequest(); //creating XML object
@@ -35,7 +44,10 @@ setInterval(()=>{
             if(xhr.status === 200 ){
                 let data = xhr.response;
                     chatBox.innerHTML = data;
-                    scrollToBottom();
+                    if(!chatBox.classList.contains("active")){//if active class not contains in chatbox the scroll to bottom
+                        scrollToBottom();
+
+                    }
                 
             }
         }

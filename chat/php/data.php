@@ -16,6 +16,9 @@
         // if(!is_array($row2['outgoing_id']) ?? false) continue;
         // ($outgoing_id == $row2['outgoing_id']) ? $you = "You: " : $you = ""; 
         
+
+        //check user is online or offline
+        ($row['status'] == "offline")? $offline = "offline" : $offline = "";
         $output .= '<a class="a" href="chat.php?user_id='.$row['unique_id'].'">
                         <div class="content">
                         <img src="php/image/'.$row['image'].'" alt="">
@@ -24,7 +27,7 @@
                             <p>' . $msg.'</p>
                         </div>
                         </div>
-                        <div class="status-dot"><i class="fas fa-circle"></i></div>
+                        <div class="status-dot'.$offline.' "><i class="fas fa-circle"></i></div>
                     </a>';
     }
 
